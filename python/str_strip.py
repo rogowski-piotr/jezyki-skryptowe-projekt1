@@ -1,5 +1,6 @@
 def function(characters='', exclude_characters=None):
-    exclude_characters = [ ord(char) for char in exclude_characters ] if exclude_characters else [ ord(char) for char in ' \t\n\r\x0b\x0c' ]
+    exclude_characters = [ ord(char) for char in exclude_characters ] if \
+        exclude_characters else [9, 10, 11, 12, 13, 28, 29, 30, 31, 32]
     cut_head = 0
     cut_tail = 0
 

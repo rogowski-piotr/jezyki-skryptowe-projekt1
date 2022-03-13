@@ -1,7 +1,7 @@
 #!/bin/bash
 
-g++ cpp/function.cpp cpp/main.cpp -o cpp/main.exe
+g++ cpp/function.cpp cpp/utils.cpp cpp/main.cpp -o cpp/out.exe
 
-./cpp/main.exe
+./cpp/out.exe
 
-rm cpp/main.exe
+rm cpp/out.exe

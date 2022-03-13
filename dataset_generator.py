@@ -13,7 +13,7 @@ def parse_args():
 
 def generate_characters(size):
     return str().join(
-        [chr(random.randint(0, 255)) for n in range(size)])
+        [chr(random.randint(0, 127)) for n in range(size)])
 
 def generate_excluded_characters(characters, size):
     return characters[0 : size] + characters[len(characters) - size : len(characters)]
@@ -26,12 +26,25 @@ def convert_to_ascii(characters, separator=' '):
 if __name__ == '__main__':
     args = parse_args()
 
-    for i in range(args.size):
-        characters = generate_characters(args.characters_size)
-        ascii_characters = convert_to_ascii(characters)
+    previous_characters = []
+    previous_excluded = []
 
-        excluded = generate_excluded_characters(characters, args.excluded_size) if args.excluded_size else ''
-        ascii_excluded = convert_to_ascii(excluded) if args.excluded_size else ''
+    for i in range(args.size):
+        ascii_characters = None
+        ascii_excluded = None
+
+        while True:
+            characters = generate_characters(args.characters_size)
+            ascii_characters = convert_to_ascii(characters)
+
+            excluded = generate_excluded_characters(characters, args.excluded_size) if args.excluded_size else ''
+            ascii_excluded = convert_to_ascii(excluded) if args.excluded_size else ''
+
+            if not ascii_characters in previous_characters and \
+                (not ascii_excluded in previous_excluded or not args.excluded_size):
+                previous_characters.append(ascii_characters)
+                previous_excluded.append(ascii_excluded)
+                break
 
         with open(args.output_path, 'a', encoding='utf8') as output:
             output.write(ascii_characters + '\n')

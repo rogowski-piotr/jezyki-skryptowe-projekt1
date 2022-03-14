@@ -1,10 +1,7 @@
 import time
 import string
-
-from numpy import empty
 from utils import convert_str_ascii_to_string
 from str_strip import function
-
 
 
 DATASET_PATH = 'dataset.txt'

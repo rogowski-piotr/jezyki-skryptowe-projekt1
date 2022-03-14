@@ -40,18 +40,9 @@ int main() {
     /*******************************
     *   PERFORMANCE MEASUREMENT    *
     ********************************/
-   
-   /*for (int dataset_index = 0; dataset_index < DATASET_SIZE; dataset_index++) {
-        string characters = characters_array[dataset_index];
-        string excluded = excluded_array[dataset_index];
-        string str = excluded.size() ? function(characters, excluded) : function(characters);
-        cout << "characters: " << characters.size() << ";\t: " << characters << endl;
-        cout << "excluded: " << excluded.size() << ";\t: " << excluded << endl;
-        cout << "result: " << str.size() << ";\t: " << str << endl << endl;
-        result[dataset_index] = str;
-    }*/
     
     auto t0 = chrono::steady_clock::now();
+
     for (int r = 0; r < REPETITIONS; r++) {
         for (int dataset_index = 0; dataset_index < DATASET_SIZE; dataset_index++) {
             if (excluded_array[dataset_index].size()) { } else { }
@@ -59,6 +50,7 @@ int main() {
     }
 
     auto t1 = chrono::steady_clock::now();
+    
     for (int r = 0; r < REPETITIONS; r++) {
         for (int dataset_index = 0; dataset_index < DATASET_SIZE; dataset_index++) {
             if (excluded_array[dataset_index].size()){
